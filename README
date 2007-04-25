@@ -1,0 +1,75 @@
+NAME
+    Devel::Backtrace - Object-oriented backtrace
+
+VERSION
+    This is version 0.01.
+
+SYNOPSIS
+        my $backtrace = Devel::Backtrace->new;
+
+        print $backtrace; # use automatic stringification
+
+        print $backtrace->point(0)->line;
+
+METHODS
+  Devel::Backtrace->new([$start])
+    Constructs a new "Devel::Backtrace" which is filled with all the
+    information "caller($i)" provides, where $i starts from $start. If no
+    argument is given, $start defaults to 0.
+
+    If $start is 1 (or higher), the backtrace won't contain the information
+    that (and where) Devel::Backtrace::new() was called.
+
+  $backtrace->point($i)
+    Returns the i'th tracepoint as a Devel::Backtrace::Point object (see its
+    documentation for how to access every bit of information).
+
+    Note that the following code snippet will print the information of
+    "caller($start+$i)":
+
+        print Devel::Backtrace->new($start)->point($i)
+
+  $backtrace->points()
+    Returns a list of all tracepoints.
+
+  $backtrace->skipme([$package])
+    This method deletes all leading tracepoints that contain information
+    about calls within $package. Afterwards the $backtrace will look as
+    though it had been created with a higher value of $start.
+
+    If the optional parameter $package is not given, it defaults to the
+    calling package.
+
+    The effect is similar to what the Carp module does.
+
+    This module ships with an example "skipme.pl" that demonstrates how to
+    use this method.
+
+  $backtrace->to_string()
+    Returns a string that contains one line for each tracepoint. It will
+    contain the information from "Devel::Backtrace::Point"'s to_string()
+    method. To get more information, use the to_long_string() method.
+
+    Note that you don't have to call to_string() if you print a
+    "Devel::Backtrace" object or otherwise treat it as a string, as the
+    stringification operator is overloaded.
+
+  $backtrace->to_long_string()
+    Returns a very long string that contains several lines for each trace
+    point. The result will contain every available bit of information. See
+    "to_long_string" in Devel::Backtrace::Point for an example of what the
+    result looks like.
+
+SEE ALSO
+    Carp::Trace is a simpler module which gives you a backtrace in string
+    form.
+
+AUTHOR
+    Christoph Bussenius <pepe@cpan.org>
+
+COPYRIGHT
+    Copyright (C) 2007 Christoph Bussenius.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
