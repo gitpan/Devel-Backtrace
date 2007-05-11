@@ -1,5 +1,8 @@
 Revision history for Devel-Backtrace
 
-0.01    Date/time
+0.01    Apr 25 2007
         First version, released on an unsuspecting world.
 
+0.02    May 11 17:42:40 CEST 2007
+        Disabled a test for Windows, because it failed due to perl features
+        that are not available on Windows.

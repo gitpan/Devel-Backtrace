@@ -11,11 +11,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.01.
+This is version 0.02.
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -73,7 +73,8 @@ sub point {
 
 =head2 $backtrace->points()
 
-Returns a list of all tracepoints.
+Returns a list of all tracepoints.  In scalar context, the number of
+tracepoints is returned.
 
 =cut
 
@@ -144,6 +145,9 @@ sub to_long_string {
 __END__
 
 =head1 SEE ALSO
+
+L<Devel::StackTrace> does mostly the same as this module.  I'm afraid I haven't
+noticed it until I uploaded this module.
 
 L<Carp::Trace> is a simpler module which gives you a backtrace in string form.
 

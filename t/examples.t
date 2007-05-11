@@ -9,6 +9,9 @@ use Test::More;
 
 BEGIN {
     # Several arguments for open, "-|" needed.
+    # This will only work on non-windows, perl >= 5.8.0
+    $^O =~ /MSWin32/i
+        and plan skip_all => 'This test requires an operating system.';
     local $@;
     eval 'use 5.8.0; 1'
         or plan skip_all => "This test won't work on your perl version.";

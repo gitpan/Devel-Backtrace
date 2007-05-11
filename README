@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.01.
+    This is version 0.02.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -30,7 +30,8 @@ METHODS
         print Devel::Backtrace->new($start)->point($i)
 
   $backtrace->points()
-    Returns a list of all tracepoints.
+    Returns a list of all tracepoints. In scalar context, the number of
+    tracepoints is returned.
 
   $backtrace->skipme([$package])
     This method deletes all leading tracepoints that contain information
@@ -61,6 +62,9 @@ METHODS
     result looks like.
 
 SEE ALSO
+    Devel::StackTrace does mostly the same as this module. I'm afraid I
+    haven't noticed it until I uploaded this module.
+
     Carp::Trace is a simpler module which gives you a backtrace in string
     form.
 

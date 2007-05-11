@@ -16,7 +16,7 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More' => 0,
     },
-    add_to_cleanup      => [ 'Devel-Backtrace-*' ],
+#    add_to_cleanup      => [ 'Devel-Backtrace-*' ],
 );
 
 $builder->create_build_script();
