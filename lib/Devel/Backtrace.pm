@@ -11,17 +11,18 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.02.
+This is version 0.03.
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
     my $backtrace = Devel::Backtrace->new;
 
     print $backtrace; # use automatic stringification
+                      # See EXAMPLES to see what the output might look like
 
     print $backtrace->point(0)->line;
 
@@ -118,6 +119,8 @@ Note that you don't have to call to_string() if you print a C<Devel::Backtrace>
 object or otherwise treat it as a string, as the stringification operator is
 overloaded.
 
+See L</EXAMPLES>.
+
 =cut
 
 sub to_string {
@@ -143,6 +146,14 @@ sub to_long_string {
 
 1
 __END__
+
+=head1 EXAMPLES
+
+A sample stringification might look like this:
+
+    Devel::Backtrace::new called from main (foo.pl:10)
+    main::bar called from main (foo.pl:6)
+    main::foo called from main (foo.pl:13)
 
 =head1 SEE ALSO
 

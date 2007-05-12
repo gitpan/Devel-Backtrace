@@ -2,12 +2,13 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.02.
+    This is version 0.03.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
 
         print $backtrace; # use automatic stringification
+                          # See EXAMPLES to see what the output might look like
 
         print $backtrace->point(0)->line;
 
@@ -55,11 +56,20 @@ METHODS
     "Devel::Backtrace" object or otherwise treat it as a string, as the
     stringification operator is overloaded.
 
+    See "EXAMPLES".
+
   $backtrace->to_long_string()
     Returns a very long string that contains several lines for each trace
     point. The result will contain every available bit of information. See
     "to_long_string" in Devel::Backtrace::Point for an example of what the
     result looks like.
+
+EXAMPLES
+    A sample stringification might look like this:
+
+        Devel::Backtrace::new called from main (foo.pl:10)
+        main::bar called from main (foo.pl:6)
+        main::foo called from main (foo.pl:13)
 
 SEE ALSO
     Devel::StackTrace does mostly the same as this module. I'm afraid I

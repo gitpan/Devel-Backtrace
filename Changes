@@ -6,3 +6,6 @@ Revision history for Devel-Backtrace
 0.02    May 11 17:42:40 CEST 2007
         Disabled a test for Windows, because it failed due to perl features
         that are not available on Windows.
+
+0.03    May 12 02:19:24 CEST 2007
+        Update documentation
