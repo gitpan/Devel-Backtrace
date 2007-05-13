@@ -11,6 +11,7 @@ MANIFEST			This list of files
 META.yml
 README
 t/00-load.t
+t/by_index.t
 t/examples.t
 t/pod-coverage.t
 t/pod.t

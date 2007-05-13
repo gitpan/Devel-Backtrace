@@ -19,26 +19,76 @@ This class is a nice way to access all the information caller provides on a
 given level.  It is used by L<Devel::Backtrace>, which generates an array of
 all trace points.
 
-=head1 METHODS
-
-=head2 $p->package, $p->filename, $p->line, $p->subroutine, $p->hasargs,
-$p->wantarray, $p->evaltext, $p->is_require, $p->hints, $p->bitmask
-
-See L<perlfunc/caller> for documentation of these fields.
-
 =cut
 
 use base qw(Class::Accessor::Fast);
-use constant FIELDS => (qw(package filename line subroutine hasargs wantarray
-    evaltext is_require hints bitmask));
 use overload '""' => \&to_string;
+use constant;
+
+BEGIN {
+    my @known_fields = (qw(package filename line subroutine hasargs wantarray
+        evaltext is_require hints bitmask hinthash));
+    # The number of caller()'s return values depends on the perl version.  For
+    # instance, hinthash is not available below perl 5.9.  We try and see how
+    # many fields are supported
+    my $supported_fields_number = () = caller(0)
+        or die "Caller doesn't work as expected";
+
+    # If not all known fields are supported, remove some
+    while (@known_fields > $supported_fields_number) {
+        pop @known_fields;
+    }
+
+    # If not all supported fields are known, add placeholders
+    while (@known_fields < $supported_fields_number) {
+        push @known_fields, "_unknown".scalar(@known_fields);
+    }
+
+    constant->import (FIELDS => @known_fields);
+}
+
+=head1 METHODS
+
+=head2 $p->package, $p->filename, $p->line, $p->subroutine, $p->hasargs,
+$p->wantarray, $p->evaltext, $p->is_require, $p->hints, $p->bitmask,
+$p->hinthash
+
+See L<perlfunc/caller> for documentation of these fields.
+
+hinthash is only available in perl 5.9 and higher.  When this module is loaded,
+it tests how many values caller returns.  Depending on the result, it adds the
+necessary accessors.  Thus, you should be able to find out if your perl
+supports hinthash by using L<UNIVERSAL/can>:
+
+    Devel::Backtrace::Point->can('hinthash');
+
+=cut
+
 __PACKAGE__->mk_ro_accessors(FIELDS);
+
+=head2 $p->by_index($i)
+
+You may also access the fields by their index in the list that caller()
+returns.  This may be useful if some future perl version introduces a new field
+for caller, and the author of this module doesn't react in time.
+
+=cut
+
+sub by_index {
+    my ($this, $idx) = @_;
+    my $fieldname = (FIELDS)[$idx];
+    unless (defined $fieldname) {
+        croak "There is no field with index $idx.";
+    }
+    return $this->$fieldname();
+}
 
 =head2 new([caller($i)])
 
 This constructs a Devel::Backtrace object.  The argument must be a reference to
 an array holding the return values of caller().  This array must have either
-three or ten elements (see L<perlfunc/caller>).
+three or ten elements (or eleven if hinthash is supported) (see
+L<perlfunc/caller>).
 
 =cut
 
@@ -104,6 +154,8 @@ Example:
     hints: 0
     bitmask: \00\00\00\00\00\00\00\00\00\00\00\00
 
+hinthash is not included in the output, as it is a hash.
+
 =cut
 
 sub to_long_string {
@@ -117,8 +169,8 @@ sub to_long_string {
 
 =head2 FIELDS
 
-This constant contains a list of all the field names.  These are the names that
-you saw in the above example.
+This constant contains a list of all the available field names.  The number of
+fields depends on your perl version.
 
 =cut
 

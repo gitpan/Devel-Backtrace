@@ -13,7 +13,7 @@ BEGIN {
     $^O =~ /MSWin32/i
         and plan skip_all => 'This test requires an operating system.';
     local $@;
-    eval 'use 5.8.0; 1'
+    eval 'use 5.008_000; 1'
         or plan skip_all => "This test won't work on your perl version.";
 }
 
