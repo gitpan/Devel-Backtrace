@@ -45,6 +45,9 @@ for my $example (@examples) {
         # The bitmask is not portable
         s/^bitmask:.*//m;
 
+        # hints and hinthash depend on the perl version
+        s/^hint.*//mg;
+
         # Avoid any newline problems
         $_ = join "\n", m{[^\015\012]+}g;
     }

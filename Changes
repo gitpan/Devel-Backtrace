@@ -13,3 +13,6 @@ Revision history for Devel-Backtrace
 0.04    May 13 01:30:13 CEST 2007
         Added support for perl 5.9's caller's hinthash.
         Added by_index method to Devel::Backtrace::Point.
+
+0.05    May 20 19:59:28 CEST 2007
+        Make the tests work with perl 5.9

@@ -160,7 +160,9 @@ hinthash is not included in the output, as it is a hash.
 
 sub to_long_string {
     my $this = shift;
-    return join '', map {
+    return join '', grep {
+        ! /^_/
+    } map {
 	"$_: " .
 	(defined ($this->{$_}) ? printable($this->{$_}) : 'undef')
 	. "\n"
