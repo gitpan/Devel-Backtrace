@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
     requires            => {
         'String::Escape'  => 0,
         'Class::Accessor' => 0,
+        'Carp'            => 0,
     },
     build_requires => {
         'Test::More' => 0,

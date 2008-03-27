@@ -49,7 +49,17 @@ Foo::foo1();
         # calls which Baz method.
         $backtrace->skipme;
 
+        print "skipme result:\n";
         print $backtrace;
+
+        my $backtrace2 = Devel::Backtrace->new;
+
+        # Tell Devel::Backtrace that we are not even interested where the first
+        # Baz method was called.
+        $backtrace2->skipmysubs;
+
+        print "\nskipmycalls result:\n";
+        print $backtrace2;
     }
 }
 
@@ -57,7 +67,14 @@ __END__
 
 Output:
 
+skipme result:
 Baz::baz1 called from Bar (skipme.pl:30)
+Bar::bar2 called from Bar (skipme.pl:26)
+Bar::bar1 called from Foo (skipme.pl:18)
+Foo::foo2 called from Foo (skipme.pl:14)
+Foo::foo1 called from main (skipme.pl:8)
+
+skipmycalls result:
 Bar::bar2 called from Bar (skipme.pl:26)
 Bar::bar1 called from Foo (skipme.pl:18)
 Foo::foo2 called from Foo (skipme.pl:14)

@@ -1,4 +1,3 @@
-Copyright (C) 2007 Christoph Bussenius.
+The Perl module distribution Devel::Backtrace is in the public domain.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+The author is Christoph Bussenius.

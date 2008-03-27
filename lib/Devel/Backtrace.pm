@@ -11,11 +11,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.05.
+This is version 0.06.
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 =head1 SYNOPSIS
 
@@ -105,7 +105,34 @@ sub skipme {
     my $package = @_ ? $_[0] : caller;
 
     my $skip;
-    $skip = shift @$this while @$this and $package eq $this->point(0)->package;
+    while (@$this and $package eq $this->point(0)->package) {
+        $skip = shift @$this;
+    }
+    return $skip;
+}
+
+=head2 $backtrace->skipmysubs([$package])
+
+This method is like C<skipme> except that it deletes calls I<to> the package
+rather than calls I<from> the package.  Usually this means that it deletes
+exactly one more tracepoint than C<skipme>.
+
+Before discarding those calls, C<skipme> is called.  This is because usually
+the topmost call in the stack is to Devel::Backtrace->new, which would not be
+catched by C<skipmysubs> otherwise.
+
+See also the example "skipme.pl".
+
+=cut
+
+sub skipmysubs {
+    my $this = shift;
+    my $package = @_ ? $_[0] : caller;
+
+    my $skip = $this->skipme($package);
+    while (@$this and $package eq $this->point(0)->called_package) {
+        $skip = shift @$this;
+    }
     return $skip;
 }
 
@@ -166,11 +193,12 @@ L<Carp::Trace> is a simpler module which gives you a backtrace in string form.
 
 Christoph Bussenius <pepe@cpan.org>
 
+If you use this module, I'll be glad if you drop me a note.
+You should mention this module's name in the subject of your mails, in order to
+make sure they won't get lost in all the spam.
+
 =head1 COPYRIGHT
 
-Copyright (C) 2007 Christoph Bussenius.
-
-This program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+This module is in the public domain.
 
 =cut

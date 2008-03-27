@@ -10,7 +10,8 @@ WriteMakefile
           'PREREQ_PM' => {
                            'Test::More' => 0,
                            'String::Escape' => 0,
-                           'Class::Accessor' => 0
+                           'Class::Accessor' => 0,
+                           'Carp' => 0
                          }
         )
 ;

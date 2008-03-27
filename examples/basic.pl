@@ -24,6 +24,9 @@ sub bar {
 
     print "The line number from the second line of the first backtrace:\n";
     print $backtrace1->point(1)->line, "\n";
+
+    print "The called package from the first line of the first backtrace:\n";
+    print $backtrace1->point(0)->called_package, "\n";
 }
 
 
@@ -36,20 +39,20 @@ Output:
 First backtrace:
 Devel::Backtrace::new called from main (basic.pl:12)
 main::bar called from main (basic.pl:8)
-main::foo called from main (basic.pl:30)
+main::foo called from main (basic.pl:33)
 
 Second (shorter) backtrace:
 main::bar called from main (basic.pl:8)
-main::foo called from main (basic.pl:30)
+main::foo called from main (basic.pl:33)
 
 Third (even shorter) backtrace:
-main::foo called from main (basic.pl:30)
+main::foo called from main (basic.pl:33)
 
 The third backtrace in a very long form:
 (Note that the bitmask may depend on the perl version.)
 package: main
 filename: basic.pl
-line: 30
+line: 33
 subroutine: main::foo
 hasargs: 1
 wantarray: undef
@@ -60,3 +63,6 @@ bitmask: UUUUUUUUUUUU\05
 
 The line number from the second line of the first backtrace:
 8
+
+The called package from the first line of the first backtrace:
+Devel::Backtrace

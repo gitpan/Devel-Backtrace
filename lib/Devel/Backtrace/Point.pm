@@ -66,6 +66,21 @@ supports hinthash by using L<UNIVERSAL/can>:
 
 __PACKAGE__->mk_ro_accessors(FIELDS);
 
+=head2 $p->called_package
+
+This returns the package that $p->subroutine is in.
+
+=cut
+
+sub called_package {
+    my $this = shift;
+    my $sub = $this->subroutine;
+
+    my $idx = rindex($sub, '::');
+    return '(unknown)' if -1 == $idx;
+    return substr($sub, 0, $idx);
+}
+
 =head2 $p->by_index($i)
 
 You may also access the fields by their index in the list that caller()

@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.05.
+    This is version 0.06.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -47,6 +47,17 @@ METHODS
     This module ships with an example "skipme.pl" that demonstrates how to
     use this method.
 
+  $backtrace->skipmysubs([$package])
+    This method is like "skipme" except that it deletes calls *to* the
+    package rather than calls *from* the package. Usually this means that it
+    deletes exactly one more tracepoint than "skipme".
+
+    Before discarding those calls, "skipme" is called. This is because
+    usually the topmost call in the stack is to Devel::Backtrace->new, which
+    would not be catched by "skipmysubs" otherwise.
+
+    See also the example "skipme.pl".
+
   $backtrace->to_string()
     Returns a string that contains one line for each tracepoint. It will
     contain the information from "Devel::Backtrace::Point"'s to_string()
@@ -81,9 +92,10 @@ SEE ALSO
 AUTHOR
     Christoph Bussenius <pepe@cpan.org>
 
-COPYRIGHT
-    Copyright (C) 2007 Christoph Bussenius.
+    If you use this module, I'll be glad if you drop me a note. You should
+    mention this module's name in the subject of your mails, in order to
+    make sure they won't get lost in all the spam.
 
-    This program is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
+COPYRIGHT
+    This module is in the public domain.
 

@@ -16,3 +16,9 @@ Revision history for Devel-Backtrace
 
 0.05    May 20 19:59:28 CEST 2007
         Make the tests work with perl 5.9
+
+0.06    Mar 27 15:17:04 CET 2008
+        Change the license to public domain.
+        Added Devel::DollarAt.
+        Added skipmysubs to Devel::Backtrace and called_package to
+        Devel::Backtrace::Point.
