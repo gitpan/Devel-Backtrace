@@ -4,7 +4,7 @@ use warnings;
 use base qw(Class::Accessor::Fast);
 use Devel::Backtrace;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 __PACKAGE__->mk_accessors(
     qw(backtrace err propagated inputline inputhandle filename line)
@@ -143,11 +143,13 @@ sub redispatch_points {
     return @{$this->{redispatch_points} || []};
 }
 
-package Devel::DollarAt::NullMessage;
+package # hide from pause
+    Devel::DollarAt::NullMessage;
 #use overload '""' => sub {''};
 sub _new { shift; bless {@_}; }
 
-package Devel::DollarAt::RedispatchPoint;
+package # hide from pause
+        Devel::DollarAt::RedispatchPoint;
 use base qw(Class::Accessor::Fast);
 __PACKAGE__->mk_ro_accessors(qw(package filename line));
 

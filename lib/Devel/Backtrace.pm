@@ -11,11 +11,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.06.
+This is version 0.07.
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
@@ -188,6 +188,9 @@ L<Devel::StackTrace> does mostly the same as this module.  I'm afraid I haven't
 noticed it until I uploaded this module.
 
 L<Carp::Trace> is a simpler module which gives you a backtrace in string form.
+
+L<Devel::DollarAt> comes with this distribution and is a nice application of
+this module.  You can use it for debugging to get a backtrace out of $@.
 
 =head1 AUTHOR
 

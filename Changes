@@ -22,3 +22,6 @@ Revision history for Devel-Backtrace
         Added Devel::DollarAt.
         Added skipmysubs to Devel::Backtrace and called_package to
         Devel::Backtrace::Point.
+
+0.07    Thu Mar 27 16:14:03 CET 2008
+        Some minor changes (nothing in the code).

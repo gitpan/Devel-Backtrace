@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.06.
+    This is version 0.07.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -88,6 +88,10 @@ SEE ALSO
 
     Carp::Trace is a simpler module which gives you a backtrace in string
     form.
+
+    Devel::DollarAt comes with this distribution and is a nice application
+    of this module. You can use it for debugging to get a backtrace out of
+    $@.
 
 AUTHOR
     Christoph Bussenius <pepe@cpan.org>

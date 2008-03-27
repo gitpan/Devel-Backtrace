@@ -1,6 +1,6 @@
 ---
 name: Devel-Backtrace
-version: 0.06
+version: 0.07
 author:
   - 'Christoph Bussenius <pepe@cpan.org>'
 abstract: Object-oriented backtrace
@@ -16,16 +16,12 @@ build_requires:
 provides:
   Devel::Backtrace:
     file: lib/Devel/Backtrace.pm
-    version: 0.06
+    version: 0.07
   Devel::Backtrace::Point:
     file: lib/Devel/Backtrace/Point.pm
   Devel::DollarAt:
     file: lib/Devel/DollarAt.pm
-    version: 0.01
-  Devel::DollarAt::NullMessage:
-    file: lib/Devel/DollarAt.pm
-  Devel::DollarAt::RedispatchPoint:
-    file: lib/Devel/DollarAt.pm
+    version: 0.02
 generated_by: Module::Build version 0.2807
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
