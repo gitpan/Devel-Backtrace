@@ -37,21 +37,21 @@ __END__
 Output:
 
 First backtrace:
-Devel::Backtrace::new called from main (basic.pl:12)
-main::bar called from main (basic.pl:8)
-main::foo called from main (basic.pl:33)
+Devel::Backtrace::new called from main (examples/basic.pl:12)
+main::bar called from main (examples/basic.pl:8)
+main::foo called from main (examples/basic.pl:33)
 
 Second (shorter) backtrace:
-main::bar called from main (basic.pl:8)
-main::foo called from main (basic.pl:33)
+main::bar called from main (examples/basic.pl:8)
+main::foo called from main (examples/basic.pl:33)
 
 Third (even shorter) backtrace:
-main::foo called from main (basic.pl:33)
+main::foo called from main (examples/basic.pl:33)
 
 The third backtrace in a very long form:
 (Note that the bitmask may depend on the perl version.)
 package: main
-filename: basic.pl
+filename: examples/basic.pl
 line: 33
 subroutine: main::foo
 hasargs: 1

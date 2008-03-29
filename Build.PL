@@ -9,6 +9,9 @@ my $builder = Module::Build->new(
     license             => 'perl',
     dist_author         => 'Christoph Bussenius <pepe@cpan.org>',
     dist_version_from   => 'lib/Devel/Backtrace.pm',
+    no_index           => {
+        directory => 'example',
+    },
     requires            => {
         'String::Escape'  => 0,
         'Class::Accessor' => 0,

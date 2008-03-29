@@ -25,3 +25,11 @@ Revision history for Devel-Backtrace
 
 0.07    Thu Mar 27 16:14:03 CET 2008
         Some minor changes (nothing in the code).
+
+0.08    Sat Mar 29 18:43:42 CET 2008
+        Added some documentation fixes.
+        Previously, some tests were skipped in perl 5.6.  I made them work in
+        5.6 and don't skip them any more.
+        Previously, a test failed in 5.10 because perl 5.8 and 5.10 sometimes
+        generate different line numbers in error messages.  I made the test
+        work (see examples/dollarat.pl).

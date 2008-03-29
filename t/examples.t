@@ -10,11 +10,13 @@ use Test::More;
 BEGIN {
     # Several arguments for open, "-|" needed.
     # This will only work on non-windows, perl >= 5.8.0
+    # Update: Now I trick around that, thus making it work on perl 5.6.  Dunno
+    # if it works on windows though.
     $^O =~ /MSWin32/i
         and plan skip_all => 'This test requires an operating system.';
-    local $@;
-    eval 'use 5.008_000; 1'
-        or plan skip_all => "This test won't work on your perl version.";
+    #local $@;
+    #eval 'use 5.008_000; 1'
+    #    or plan skip_all => "This test won't work on your perl version.";
 }
 
 use File::Spec;
@@ -23,15 +25,25 @@ my $exampledir = 'examples';
 if (! -d $exampledir) {
     $exampledir = File::Spec->catfile('..', $exampledir);
 }
-chdir($exampledir) or die "$exampledir: $!";
 
-my @examples = <*.pl>;
+my @examples = <$exampledir/*.pl>;
+
+die "No examples found in $exampledir." unless @examples;
 
 plan tests => scalar(@examples);
 
 for my $example (@examples) {
-    open my $pipe, '-|', $^X, $example
-        or die "run $example: $!";
+    # Won't work on perl 5.6:
+    # open my $pipe, '-|', $^X, $example
+    #     or die "run $example: $!";
+
+    my $pid = open my $pipe, '-|';
+    die $! unless defined $pid;
+    if (0 == $pid) {
+        exec ($^X, $example);
+        die $!;
+    }
+
     my $output = do {local $/; <$pipe>};
     die $! unless defined $output;
     close $pipe or die "$example: exited $?";

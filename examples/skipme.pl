@@ -68,14 +68,14 @@ __END__
 Output:
 
 skipme result:
-Baz::baz1 called from Bar (skipme.pl:30)
-Bar::bar2 called from Bar (skipme.pl:26)
-Bar::bar1 called from Foo (skipme.pl:18)
-Foo::foo2 called from Foo (skipme.pl:14)
-Foo::foo1 called from main (skipme.pl:8)
+Baz::baz1 called from Bar (examples/skipme.pl:30)
+Bar::bar2 called from Bar (examples/skipme.pl:26)
+Bar::bar1 called from Foo (examples/skipme.pl:18)
+Foo::foo2 called from Foo (examples/skipme.pl:14)
+Foo::foo1 called from main (examples/skipme.pl:8)
 
 skipmycalls result:
-Bar::bar2 called from Bar (skipme.pl:26)
-Bar::bar1 called from Foo (skipme.pl:18)
-Foo::foo2 called from Foo (skipme.pl:14)
-Foo::foo1 called from main (skipme.pl:8)
+Bar::bar2 called from Bar (examples/skipme.pl:26)
+Bar::bar1 called from Foo (examples/skipme.pl:18)
+Foo::foo2 called from Foo (examples/skipme.pl:14)
+Foo::foo1 called from main (examples/skipme.pl:8)

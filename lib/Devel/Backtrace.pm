@@ -11,11 +11,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.07.
+This is version 0.08.
 
 =cut
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 =head1 SYNOPSIS
 
@@ -96,7 +96,7 @@ package.
 The effect is similar to what the L<Carp> module does.
 
 This module ships with an example "skipme.pl" that demonstrates how to use this
-method.
+method.  See also L</EXAMPLES>.
 
 =cut
 
@@ -114,14 +114,15 @@ sub skipme {
 =head2 $backtrace->skipmysubs([$package])
 
 This method is like C<skipme> except that it deletes calls I<to> the package
-rather than calls I<from> the package.  Usually this means that it deletes
-exactly one more tracepoint than C<skipme>.
+rather than calls I<from> the package.
 
 Before discarding those calls, C<skipme> is called.  This is because usually
 the topmost call in the stack is to Devel::Backtrace->new, which would not be
 catched by C<skipmysubs> otherwise.
 
-See also the example "skipme.pl".
+This means that skipmysubs usually deletes more lines than skipme would.
+
+See also L</EXAMPLES> and the example "skipme.pl".
 
 =cut
 
@@ -178,9 +179,14 @@ __END__
 
 A sample stringification might look like this:
 
-    Devel::Backtrace::new called from main (foo.pl:10)
+    Devel::Backtrace::new called from MyPackage (foo.pl:30)
+    MyPackage::test2 called from MyPackage (foo.pl:28)
+    MyPackage::test1 called from main (foo.pl:18)
     main::bar called from main (foo.pl:6)
     main::foo called from main (foo.pl:13)
+
+If MyPackage called skipme, the first line would be removed.  If it called
+skipmysubs, the first three lines would be removed.
 
 =head1 SEE ALSO
 
