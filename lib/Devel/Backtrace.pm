@@ -11,11 +11,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.08.
+This is version 0.09.
 
 =cut
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 =head1 SYNOPSIS
 
@@ -185,7 +185,7 @@ A sample stringification might look like this:
     main::bar called from main (foo.pl:6)
     main::foo called from main (foo.pl:13)
 
-If MyPackage called skipme, the first line would be removed.  If it called
+If MyPackage called skipme, the first two lines would be removed.  If it called
 skipmysubs, the first three lines would be removed.
 
 =head1 SEE ALSO

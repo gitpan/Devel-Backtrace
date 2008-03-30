@@ -1,6 +1,6 @@
 ---
 name: Devel-Backtrace
-version: 0.08
+version: 0.09
 author:
   - 'Christoph Bussenius <pepe@cpan.org>'
 abstract: Object-oriented backtrace
@@ -16,9 +16,10 @@ build_requires:
 provides:
   Devel::Backtrace:
     file: lib/Devel/Backtrace.pm
-    version: 0.08
+    version: 0.09
   Devel::Backtrace::Point:
     file: lib/Devel/Backtrace/Point.pm
+    version: 0.09
   Devel::DollarAt:
     file: lib/Devel/DollarAt.pm
     version: 0.02

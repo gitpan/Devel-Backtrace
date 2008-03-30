@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.08.
+    This is version 0.09.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -85,7 +85,7 @@ EXAMPLES
         main::bar called from main (foo.pl:6)
         main::foo called from main (foo.pl:13)
 
-    If MyPackage called skipme, the first line would be removed. If it
+    If MyPackage called skipme, the first two lines would be removed. If it
     called skipmysubs, the first three lines would be removed.
 
 SEE ALSO

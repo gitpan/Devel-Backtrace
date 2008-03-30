@@ -1,6 +1,7 @@
 package Devel::Backtrace::Point;
 use strict;
 use warnings;
+our $VERSION = '0.09';
 use Carp;
 use String::Escape qw(printable);
 

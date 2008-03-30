@@ -33,3 +33,7 @@ Revision history for Devel-Backtrace
         Previously, a test failed in 5.10 because perl 5.8 and 5.10 sometimes
         generate different line numbers in error messages.  I made the test
         work (see examples/dollarat.pl).
+
+0.09    Sun Mar 30 16:08:25 CEST 2008
+        Documentation fixes
+        Added version to Devel::Backtrace::Point
