@@ -37,3 +37,12 @@ Revision history for Devel-Backtrace
 0.09    Sun Mar 30 16:08:25 CEST 2008
         Documentation fixes
         Added version to Devel::Backtrace::Point
+
+0.10    Wed Apr  2 02:51:43 CEST 2008
+        Format strings for stringification.
+        Level information in Devel::Backtrace::Point.
+        Fix a warning in examples/dollarat.pl in perl 5.10.
+        Change the test system.  Previously it used to automatically run the
+        examples, but now it's independent from the examples because that's
+        more flexible.
+        Again, added some fixes to make the tests work on all platforms.

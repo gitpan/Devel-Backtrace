@@ -2,6 +2,7 @@ package Devel::Backtrace;
 use strict;
 use warnings;
 use Devel::Backtrace::Point;
+use Carp;
 
 use overload '""' => \&to_string;
 
@@ -11,11 +12,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.09.
+This is version 0.10.
 
 =cut
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 =head1 SYNOPSIS
 
@@ -28,7 +29,11 @@ our $VERSION = '0.09';
 
 =head1 METHODS
 
-=head2 Devel::Backtrace->new([$start])
+=head2 Devel::Backtrace->new()
+
+Optional parameters: -start => $start, -format => $format
+
+If only one parameter is given, it will be used as $start.
 
 Constructs a new C<Devel::Backtrace> which is filled with all the information
 C<caller($i)> provides, where C<$i> starts from C<$start>.  If no argument is
@@ -41,15 +46,38 @@ If C<$start> is 1 (or higher), the backtrace won't contain the information that
 
 sub new {
     my $class = shift;
-    my ($start) = @_;
+    my (@opts) = @_;
 
-    $start = 0 unless defined $start;
+    my $start;
+    my %pointopts;
+
+    if (1 == @opts) {
+        $start = shift @opts;
+    }
+    while (my $opt = shift @opts) {
+        if ('-format' eq $opt) {
+            $pointopts{$opt} = shift @opts;
+        } elsif ('-start' eq $opt) {
+            $start = shift @opts;
+        } else {
+            croak "Unknown option $opt";
+        }
+    }
+
+    if (defined $start) {
+        $pointopts{'-skip'} = $start;
+    } else {
+        $start = 0;
+    }
 
     my @backtrace;
     for (my $deep = $start; my @caller = caller($deep); ++$deep) {
-	push @backtrace, \@caller;
+	push @backtrace, Devel::Backtrace::Point->new(
+            \@caller,
+            -level => $deep,
+            %pointopts,
+        );
     }
-    $_ = Devel::Backtrace::Point->new($_) for @backtrace;
 
     return bless \@backtrace, $class;
 }
@@ -104,11 +132,20 @@ sub skipme {
     my $this = shift;
     my $package = @_ ? $_[0] : caller;
 
-    my $skip;
+    my $skip = 0;
+    my $skipped;
     while (@$this and $package eq $this->point(0)->package) {
-        $skip = shift @$this;
+        $skipped = shift @$this;
+        $skip++;
     }
-    return $skip;
+    $this->_adjustskip($skip);
+    return $skipped;
+}
+
+sub _adjustskip {
+    my ($this, $newskip) = @_;
+
+    $_->_skip($newskip + ($_->_skip || 0)) for $this->points;
 }
 
 =head2 $backtrace->skipmysubs([$package])
@@ -122,6 +159,8 @@ catched by C<skipmysubs> otherwise.
 
 This means that skipmysubs usually deletes more lines than skipme would.
 
+C<skipmysubs> was added in Devel::Backtrace version 0.06.
+
 See also L</EXAMPLES> and the example "skipme.pl".
 
 =cut
@@ -130,11 +169,14 @@ sub skipmysubs {
     my $this = shift;
     my $package = @_ ? $_[0] : caller;
 
-    my $skip = $this->skipme($package);
+    my $skipped = $this->skipme($package);
+    my $skip = 0;
     while (@$this and $package eq $this->point(0)->called_package) {
-        $skip = shift @$this;
+        $skipped = shift @$this;
+        $skip++;
     }
-    return $skip;
+    $this->_adjustskip($skip);
+    return $skipped;
 }
 
 =head2 $backtrace->to_string()
@@ -188,9 +230,21 @@ A sample stringification might look like this:
 If MyPackage called skipme, the first two lines would be removed.  If it called
 skipmysubs, the first three lines would be removed.
 
+If you don't like the format, you can change it:
+
+    my $backtrace = Devel::Backtrace->new(-format => '%I. %s');
+
+This would produce a stringification of the following form:
+
+    0. Devel::Backtrace::new
+    1. MyPackage::test2
+    2. MyPackage::test1
+    3. main::bar
+    4. main::foo
+
 =head1 SEE ALSO
 
-L<Devel::StackTrace> does mostly the same as this module.  I'm afraid I haven't
+L<Devel::StackTrace> does mostly the same as this module.  I'm afraid I hadn't
 noticed it until I uploaded this module.
 
 L<Carp::Trace> is a simpler module which gives you a backtrace in string form.

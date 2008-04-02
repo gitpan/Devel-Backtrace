@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.09.
+    This is version 0.10.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -13,7 +13,11 @@ SYNOPSIS
         print $backtrace->point(0)->line;
 
 METHODS
-  Devel::Backtrace->new([$start])
+  Devel::Backtrace->new()
+    Optional parameters: -start => $start, -format => $format
+
+    If only one parameter is given, it will be used as $start.
+
     Constructs a new "Devel::Backtrace" which is filled with all the
     information "caller($i)" provides, where $i starts from $start. If no
     argument is given, $start defaults to 0.
@@ -57,6 +61,8 @@ METHODS
 
     This means that skipmysubs usually deletes more lines than skipme would.
 
+    "skipmysubs" was added in Devel::Backtrace version 0.06.
+
     See also "EXAMPLES" and the example "skipme.pl".
 
   $backtrace->to_string()
@@ -88,9 +94,21 @@ EXAMPLES
     If MyPackage called skipme, the first two lines would be removed. If it
     called skipmysubs, the first three lines would be removed.
 
+    If you don't like the format, you can change it:
+
+        my $backtrace = Devel::Backtrace->new(-format => '%I. %s');
+
+    This would produce a stringification of the following form:
+
+        0. Devel::Backtrace::new
+        1. MyPackage::test2
+        2. MyPackage::test1
+        3. main::bar
+        4. main::foo
+
 SEE ALSO
     Devel::StackTrace does mostly the same as this module. I'm afraid I
-    haven't noticed it until I uploaded this module.
+    hadn't noticed it until I uploaded this module.
 
     Carp::Trace is a simpler module which gives you a backtrace in string
     form.
