@@ -1,7 +1,7 @@
 package Devel::Backtrace::Point;
 use strict;
 use warnings;
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 use Carp;
 use String::Escape qw(printable);
 
@@ -306,11 +306,12 @@ L<Devel::Backtrace>
 
 Christoph Bussenius <pepe@cpan.org>
 
-=head1 COPYRIGHT
+=head1 LICENSE
 
-Copyright (C) 2007 Christoph Bussenius.
+This Perl module is in the public domain.
 
-This program is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself.
+If your country's law does not allow this module being in the public
+domain or does not include the concept of public domain, you may use the
+module under the same terms as perl itself.
 
 =cut

@@ -46,3 +46,8 @@ Revision history for Devel-Backtrace
         examples, but now it's independent from the examples because that's
         more flexible.
         Again, added some fixes to make the tests work on all platforms.
+
+0.11    Mon Jul  7 00:55:37 CEST 2008
+        DBP is in the public domain too.  (Forgot that in 0.06)
+        Fix a test that failed on Windows because of path separators.
+        Add the Perl license as a fallback license...

@@ -12,11 +12,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.10.
+This is version 0.11.
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 =head1 SYNOPSIS
 
@@ -260,8 +260,12 @@ If you use this module, I'll be glad if you drop me a note.
 You should mention this module's name in the subject of your mails, in order to
 make sure they won't get lost in all the spam.
 
-=head1 COPYRIGHT
+=head1 LICENSE
 
 This module is in the public domain.
+
+If your country's law does not allow this module being in the public
+domain or does not include the concept of public domain, you may use the
+module under the same terms as perl itself.
 
 =cut

@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.10.
+    This is version 0.11.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;
@@ -124,6 +124,10 @@ AUTHOR
     mention this module's name in the subject of your mails, in order to
     make sure they won't get lost in all the spam.
 
-COPYRIGHT
+LICENSE
     This module is in the public domain.
+
+    If your country's law does not allow this module being in the public
+    domain or does not include the concept of public domain, you may use the
+    module under the same terms as perl itself.
 

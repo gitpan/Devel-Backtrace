@@ -16,6 +16,7 @@ my $builder = Module::Build->new(
         'String::Escape'  => 0,
         'Class::Accessor' => 0,
         'Carp'            => 0,
+        'perl'            => '5.006_000',
     },
     build_requires => {
         'Test::More' => 0,

@@ -26,7 +26,7 @@ main::foo called from main (t/basic.t:$line0)\n}, 'stringification with argument
 
     like($backtrace3->to_long_string, qr{^
 package:\s*main\n
-filename:\s*t/basic\.t\n
+filename:\s*t[\\/]basic\.t\n
 line:\s*\Q$line0\E\n
 subroutine:\s*main::foo\n
 hasargs:\s*1\n
