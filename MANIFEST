@@ -8,10 +8,7 @@ lib/Devel/Backtrace.pm
 lib/Devel/Backtrace/Point.pm
 lib/Devel/DollarAt.pm
 LICENSE
-Makefile.PL
 MANIFEST			This list of files
-META.yml
-README
 t/00-load.t
 t/basic.t
 t/by_index.t
@@ -19,3 +16,6 @@ t/dollarat.t
 t/pod-coverage.t
 t/pod.t
 t/skipme.t
+Makefile.PL
+README
+META.yml

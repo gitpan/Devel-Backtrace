@@ -12,11 +12,11 @@ Devel::Backtrace - Object-oriented backtrace
 
 =head1 VERSION
 
-This is version 0.11.
+This is version 0.11_01.
 
 =cut
 
-our $VERSION = '0.11';
+our $VERSION = '0.11_01';
 
 =head1 SYNOPSIS
 

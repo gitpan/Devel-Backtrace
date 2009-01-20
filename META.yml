@@ -1,6 +1,6 @@
 ---
 name: Devel-Backtrace
-version: 0.11
+version: 0.11_01
 author:
   - 'Christoph Bussenius <pepe@cpan.org>'
 abstract: Object-oriented backtrace
@@ -17,7 +17,7 @@ build_requires:
 provides:
   Devel::Backtrace:
     file: lib/Devel/Backtrace.pm
-    version: 0.11
+    version: 0.11_01
   Devel::Backtrace::Point:
     file: lib/Devel/Backtrace/Point.pm
     version: 0.11
@@ -26,7 +26,7 @@ provides:
     version: 0.02
 no_index:
   directory: example
-generated_by: Module::Build version 0.2808
+generated_by: Module::Build version 0.2807
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

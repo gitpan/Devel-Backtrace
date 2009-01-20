@@ -13,16 +13,21 @@ sub foo {
 
 sub bar {
     $line2 = __LINE__; my $backtrace1 = Devel::Backtrace->new;
-    is ("$backtrace1", qq{Devel::Backtrace::new called from main (t/basic.t:$line2)
+    my $backtrace1_str = "$backtrace1";
+    $backtrace1_str =~ tr#\\#/#;
+    is ($backtrace1_str, qq{Devel::Backtrace::new called from main (t/basic.t:$line2)
 main::bar called from main (t/basic.t:$line1)
 main::foo called from main (t/basic.t:$line0)\n}, 'stringification');
 
     my $backtrace2 = Devel::Backtrace->new(1);
+    $backtrace2 =~ tr#\\#/#;
     is ("$backtrace2", qq{main::bar called from main (t/basic.t:$line1)
 main::foo called from main (t/basic.t:$line0)\n}, 'stringification with argument 1 to new');
 
     my $backtrace3 = Devel::Backtrace->new(2);
-    is("$backtrace3", qq{main::foo called from main (t/basic.t:$line0)\n}, 'stringification with argument 2 to new');
+    my $backtrace3_str = "$backtrace3";
+    $backtrace3_str =~ tr#\\#/#;
+    is($backtrace3_str, qq{main::foo called from main (t/basic.t:$line0)\n}, 'stringification with argument 2 to new');
 
     like($backtrace3->to_long_string, qr{^
 package:\s*main\n

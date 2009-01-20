@@ -51,3 +51,6 @@ Revision history for Devel-Backtrace
         DBP is in the public domain too.  (Forgot that in 0.06)
         Fix a test that failed on Windows because of path separators.
         Add the Perl license as a fallback license...
+
+0.11_01 Wed Jan 21 00:14:18 CET 2009
+        Try again to make the test suite windows-compatible.
