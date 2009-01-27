@@ -2,7 +2,7 @@ NAME
     Devel::Backtrace - Object-oriented backtrace
 
 VERSION
-    This is version 0.11_01.
+    This is version 0.12.
 
 SYNOPSIS
         my $backtrace = Devel::Backtrace->new;

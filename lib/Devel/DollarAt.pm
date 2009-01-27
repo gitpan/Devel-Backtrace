@@ -215,7 +215,7 @@ error.
 
 =item inputline
 
-Returns the line number of C<$@->inputhandle> (which is $.) at the time of the
+Returns the line number of C<< $@->inputhandle >> (which is $.) at the time of the
 error.
 
 =item line

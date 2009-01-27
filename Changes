@@ -54,3 +54,7 @@ Revision history for Devel-Backtrace
 
 0.11_01 Wed Jan 21 00:14:18 CET 2009
         Try again to make the test suite windows-compatible.
+
+0.12    2009-01-27
+        Non-dev release after 0.11_01 seemed fine with testers.
+        Pod fix.
